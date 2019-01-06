@@ -1,13 +1,14 @@
 node{
 environment{
-ENVIRONMENT_NAME=defineEnvironment()
+ENVIRONMENT_NAME=defineEnvironment();
+def defineEnvironment();
 }
  
     stage('Checkout'){
         properties([pipelineTriggers([githubPush()])])
          checkout(scm)
 	 }
-	 def defineEnvironment(){
+	 defineEnvironment(){
 	 def buildcasue= "${env.BUILD_CAUSE}"
 	 if (buildcause == "admin"){
 	  return 'build'
