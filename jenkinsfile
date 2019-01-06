@@ -22,7 +22,7 @@ ENVIRONMENT_NAME=defineEnvironment()
 	 
 	 echo "build is success"
 	 }
-	 stage('deploy'){
+	 stage('test and deploy'){
 	 echo " test and deploy "
 
 	}
