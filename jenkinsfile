@@ -2,7 +2,12 @@ node{
 environment{
 ENVIRONMENT_NAME=defineEnvironment()
 }
- def defineEnvironment(){
+ 
+    stage('Checkout'){
+        properties([pipelineTriggers([githubPush()])])
+         checkout(scm)
+	 }
+	 def defineEnvironment(){
 	 def buildcasue= "${env.BUILD_CAUSE}"
 	 if (buildcause == "admin"){
 	  return 'build'
@@ -11,10 +16,6 @@ ENVIRONMENT_NAME=defineEnvironment()
 	  return 'email notify'
 	}
 }	
-    stage('Checkout'){
-        properties([pipelineTriggers([githubPush()])])
-         checkout(scm)
-	 }
     stage('build'){
 	 echo "${currentBuild.buildCauses}" // same as currentBuild.getBuildCauses()
 	 echo "${currentBuild.getBuildCauses('hudson.model.Cause$UserCause')}"
